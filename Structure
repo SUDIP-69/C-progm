@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <string.h>
+
+typedef struct employee
+{
+    char name[100];
+    char add[100];
+    int age;
+    int salary;
+} emp;
+
+void sort(emp arr[], int n)
+{
+    emp temp[1];
+   
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            if (strcmp(arr[i].name, arr[j].name) < 0)
+            {
+                temp[0] = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp[0];
+            }
+        }
+    }
+}
+
+int main()
+{
+    int n, i;
+    char str[100], address[100];
+    emp info[100];
+    printf("Enter the number of employees: ");
+    scanf("%d", &n);
+    printf("\n\n");
+
+    for (i = 0; i < n; i++)
+    {
+        getchar();
+        printf("Enter the name of the employee%d: ", i + 1);
+        strcpy(info[i].name, fgets(str, 100, stdin));
+
+        printf("Enter the address of the employee%d: ", i + 1);
+        strcpy(info[i].add, fgets(address, 100, stdin));
+
+        printf("Enter the age of the employee%d: ", i + 1);
+        scanf("%d", &info[i].age);
+
+        printf("Enter the salary of the employee%d: ", i + 1);
+        scanf("%d", &info[i].salary);
+
+        printf("\n\n");
+    }
+
+    sort(info, n);
+
+    printf("\nEMPLOYEE DETAILS\n________________\n\n");
+    for (i = 0; i < n; i++)
+    {
+        printf("The name of the employee%d: %s", i + 1, info[i].name);
+        printf("The address of the employee%d: %s", i + 1, info[i].add);
+        printf("The age of the employee%d: %d\n", i + 1, info[i].age);
+        printf("The salary of the employee%d: %d\n\n", i + 1, info[i].salary);
+    }
+
+    return 0;
+}
+
